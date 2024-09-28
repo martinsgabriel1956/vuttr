@@ -27,8 +27,40 @@ export class ToolsService {
     };
   }
 
-  findAll() {
-    return `This action returns all tools`;
+  async findAll(
+    userId: string,
+    filters?: {
+      tag?: string;
+    },
+  ) {
+    const tools = await this.toolsRepository.findMany({
+      where: {
+        userId,
+        tags: filters?.tag
+          ? {
+              has: filters.tag,
+            }
+          : undefined,
+      },
+    });
+
+    const hasNotResult = filters?.tag && tools.length === 0;
+
+    if (hasNotResult) {
+      return [];
+    }
+
+    const formattedTools = tools.map((tool) => {
+      return {
+        id: tool.id,
+        title: tool.title,
+        link: tool.link,
+        description: tool.description,
+        tags: tool.tags,
+      };
+    });
+
+    return formattedTools;
   }
 
   findOne(id: number) {

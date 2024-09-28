@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { ToolsService } from './tools.service';
 import { CreateToolDto } from './dto/create-tool.dto';
@@ -22,8 +23,10 @@ export class ToolsController {
   }
 
   @Get()
-  findAll() {
-    return this.toolsService.findAll();
+  findAll(@ActiveUserId() userId: string, @Query('tag') tag: string) {
+    return this.toolsService.findAll(userId, {
+      tag,
+    });
   }
 
   @Get(':id')

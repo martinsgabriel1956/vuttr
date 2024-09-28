@@ -9,4 +9,8 @@ export class ToolsRepository {
   create(createDTO: Prisma.ToolCreateArgs) {
     return this.prismaService.tool.create(createDTO);
   }
+
+  findMany(findManyDTO: Prisma.ToolFindManyArgs) {
+    return this.prismaService.tool.findMany(findManyDTO);
+  }
 }
