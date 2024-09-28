@@ -16,15 +16,17 @@ export class ToolsService {
         tags,
         userId,
       },
+
+      select: {
+        id: true,
+        title: true,
+        link: true,
+        description: true,
+        tags: true,
+      },
     });
 
-    return {
-      id: tool.id,
-      title: tool.title,
-      link: tool.link,
-      description: tool.description,
-      tags: tool.tags,
-    };
+    return tool;
   }
 
   async findAll(
@@ -42,6 +44,14 @@ export class ToolsService {
             }
           : undefined,
       },
+
+      select: {
+        id: true,
+        title: true,
+        link: true,
+        description: true,
+        tags: true,
+      },
     });
 
     const hasNotResult = filters?.tag && tools.length === 0;
@@ -50,17 +60,7 @@ export class ToolsService {
       return [];
     }
 
-    const formattedTools = tools.map((tool) => {
-      return {
-        id: tool.id,
-        title: tool.title,
-        link: tool.link,
-        description: tool.description,
-        tags: tool.tags,
-      };
-    });
-
-    return formattedTools;
+    return tools;
   }
 
   findOne(id: number) {
