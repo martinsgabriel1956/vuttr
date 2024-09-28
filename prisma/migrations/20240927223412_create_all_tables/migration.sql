@@ -1,19 +1,3 @@
-/*
-  Warnings:
-
-  - You are about to drop the `Tools` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `User` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropForeignKey
-ALTER TABLE "Tools" DROP CONSTRAINT "Tools_userId_fkey";
-
--- DropTable
-DROP TABLE "Tools";
-
--- DropTable
-DROP TABLE "User";
-
 -- CreateTable
 CREATE TABLE "users" (
     "id" TEXT NOT NULL,
