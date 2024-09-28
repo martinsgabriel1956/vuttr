@@ -6,7 +6,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      POSTGRES_HOST: db
+      POSTGRES_HOST: vuttr
       POSTGRES_PORT: 5432
       POSTGRES_USER: vuttr
       POSTGRES_PASSWORD: vuttr
@@ -16,7 +16,9 @@ services:
 
   db:
     image: postgres:latest
+    restart: always
     environment:
+      POSTGRES_HOST: vuttr
       POSTGRES_USER: vuttr
       POSTGRES_PASSWORD: vuttr
       POSTGRES_DB: vuttr
