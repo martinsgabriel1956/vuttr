@@ -101,7 +101,25 @@ export class ToolsService {
     });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} tool`;
+  async remove(id: string) {
+    const toolExists = await this.toolsRepository.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!toolExists) {
+      throw new NotFoundException('Tool not found');
+    }
+
+    await this.toolsRepository.delete({
+      where: {
+        id,
+      },
+    });
+
+    return {
+      message: 'Tool deleted successfully',
+    };
   }
 }

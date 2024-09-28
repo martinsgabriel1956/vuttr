@@ -21,4 +21,8 @@ export class ToolsRepository {
   update(updateDTO: Prisma.ToolUpdateArgs) {
     return this.prismaService.tool.update(updateDTO);
   }
+
+  delete(deleteDTO: Prisma.ToolDeleteArgs) {
+    return this.prismaService.tool.delete(deleteDTO);
+  }
 }

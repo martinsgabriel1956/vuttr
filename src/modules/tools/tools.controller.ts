@@ -41,6 +41,6 @@ export class ToolsController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.toolsService.remove(+id);
+    return this.toolsService.remove(id);
   }
 }
