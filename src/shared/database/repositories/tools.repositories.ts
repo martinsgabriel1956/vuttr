@@ -13,4 +13,12 @@ export class ToolsRepository {
   findMany(findManyDTO: Prisma.ToolFindManyArgs) {
     return this.prismaService.tool.findMany(findManyDTO);
   }
+
+  findUnique(findUnique: Prisma.ToolFindUniqueArgs) {
+    return this.prismaService.tool.findUnique(findUnique);
+  }
+
+  update(updateDTO: Prisma.ToolUpdateArgs) {
+    return this.prismaService.tool.update(updateDTO);
+  }
 }

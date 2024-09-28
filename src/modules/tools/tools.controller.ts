@@ -36,7 +36,7 @@ export class ToolsController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateToolDto: UpdateToolDto) {
-    return this.toolsService.update(+id, updateToolDto);
+    return this.toolsService.update(id, updateToolDto);
   }
 
   @Delete(':id')

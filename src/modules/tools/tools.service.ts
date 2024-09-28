@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateToolDto } from './dto/create-tool.dto';
 import { UpdateToolDto } from './dto/update-tool.dto';
 import { ToolsRepository } from 'src/shared/database/repositories/tools.repositories';
@@ -67,8 +67,38 @@ export class ToolsService {
     return `This action returns a #${id} tool`;
   }
 
-  update(id: number, updateToolDto: UpdateToolDto) {
-    return `This action updates a #${id} tool`;
+  async update(id: string, updateToolDto: UpdateToolDto) {
+    const { title, link, description, tags } = updateToolDto;
+
+    const toolExists = await this.toolsRepository.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!toolExists) {
+      throw new NotFoundException('Tool not found');
+    }
+
+    return await this.toolsRepository.update({
+      where: {
+        id,
+      },
+      data: {
+        title,
+        link,
+        description,
+        tags,
+      },
+
+      select: {
+        id: true,
+        title: true,
+        link: true,
+        description: true,
+        tags: true,
+      },
+    });
   }
 
   remove(id: number) {
