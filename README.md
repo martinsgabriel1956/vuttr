@@ -46,8 +46,6 @@ $ pnpm run start:prod
 
 ## :computer: Technologies
 
-Check out a few resources that may come in handy when working with NestJS:
-
 - [NestJS](https://nestjs.com/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Prisma](https://www.prisma.io/)
